@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Reset standard styles -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Options styles -->
+    <link rel="stylesheet" href="assets/css/options.css">
+
+
+    <!-- Color picker library styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+
+
+</head>
+
+<body>
+    <main>
+        <div class="popup__main-block">
+
+            <section class="popup__main-block__section-1">
+                <input class="section-1__input" type="text" placeholder="https://yoursite.com">
+                <button class="section-1__button">Search</button>
+            </section>
+
+            <section class="popup__main-block__section-2">
+                <input id="section-2__input" type="text" placeholder="Add new word">
+                <div>
+                    <div class="section-2__picker"></div>
+                </div>
+                <button id="section-2__button">Add</button>
+            </section>
+
+            <section class="popup__main-block__section-3">
+
+                <!-- pattern for the next line items -->
+                <template id="line-item-pattern">
+                    <div>
+                        <input class="line-item__input" type="text">
+                        <div class="line-item__color-picker-block">
+                            <div></div>
+                        </div>
+                        <img class="line-item__close-cross" src="assets/images/close.svg">
+                    </div>
+                </template>
+
+            </section>
+
+        </div>
+    </main>
+
+
+
+
+
+    <!-- Color picker js library -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
+
+
+    <!-- Script to add saved items -->
+    <script src="assets/js/add-saved-items.js"></script>
+    <!-- Popup script -->
+    <script src="assets/js/color-picker.js"></script>
+    <!-- Search site script -->
+    <script src="assets/js/search-site.js"></script>
+
+</body>
+
+</html>

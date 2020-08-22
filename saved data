@@ -1,0 +1,135 @@
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // debugger;
+  const asyncWrapper = function (cb) {
+    cb();
+  };
+  const list = () => {
+    return new Promise((resolve) => {
+      chrome.storage.local.get(["all_items"], function (result) {
+        let all_items_object = result.all_items;
+        resolve(all_items_object);
+      });
+    });
+  };
+
+  if (request.get == "all_items") {
+    asyncWrapper(async () => {
+      try {
+        const all_items_object = await list();
+        sendResponse({ message: all_items_object });
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  }
+  // Returning true in order to handle async request
+  return true;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+
+  if (request.get == "all_items") {
+    chrome.storage.local.get(["all_items"], function (result) {
+      let all_items_object = result.all_items;
+    });
+  }
+
+  sendResponse({ message: all_items_object });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"use strict";
+
+let body_tag = document.querySelector("body");
+let mark = new Mark(body_tag);
+
+chrome.runtime.sendMessage({ get: "all_items" }, function (response) {
+  if (response.all_items) {
+
+
+
+    let all_items_object = response.all_items;    
+    
+    let get_results = () => {
+      return new Promise((resolve) => {
+
+        // Get all results quantity
+        let results_quantity = 0;
+
+
+        for (let item in all_items_object) {
+          mark.mark(item, {
+            element: "span",
+            each: function (element) {
+              element.setAttribute("data-word", item);
+            },
+            done: function (number) {
+              results_quantity += number;
+            },
+          });
+        }
+
+        resolve(results_quantity);
+      });
+    };
+
+    (async () => {
+      
+    })();
+
+    for (let item in all_items_object) {
+      let all_marked_elements = document.querySelectorAll(
+        `[data-word="${item}"]`
+      );
+      for (let marked_element of all_marked_elements) {
+        marked_element.style.background = all_items_object[item].color;
+      }
+    }
+  }
+});

@@ -1,0 +1,46 @@
+{
+    "name": "Searcher",
+    "version": "1.0",
+    "description": "Help You to search words on various sites",
+    "icons": {
+        "128": "assets/images/search128.png",
+        "64": "assets/images/search64.png",
+        "24": "assets/images/search24.png",
+        "16": "assets/images/search16.png"
+    },
+    "permissions": [
+        "storage",
+        "contextMenus",
+        "notifications"
+    ],
+    "browser_action": {
+        "default_icon": "assets/images/search128.png",
+        "default_popup": "popup.html",
+        "default_title": "Searcher"
+    },
+    "manifest_version": 2,
+    "options_page": "options.html",
+    "background": {
+        "scripts": [
+            "background_scripts/get-items-data.js",
+            "background_scripts/show-count.js",
+            "background_scripts/context-menu.js"
+        ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content_scripts/jquery.js",
+                "content_scripts/jquery.mark.min.js",
+                "content_scripts/mark.min.js",
+                "content_scripts/find-words.js",
+                "content_scripts/change-url.js"
+            ]
+        }
+    ],
+    "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net; object-src 'self'"
+}
